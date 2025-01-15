@@ -1,0 +1,34 @@
+POST http://localhost:9001/products
+Content-Type: application/json
+
+{
+    "name": "iMac",
+    "description": "A desktop computer",
+    "stock": 100,
+    "price": 1600
+}
+###
+POST http://localhost:9001/products/stock
+Content-Type: application/json
+
+{
+    "ids": [1, 2, 3]
+}
+###
+PATCH http://localhost:9001/products/1
+Content-Type: application/json
+
+{
+    "name": "MacBook Pro",
+    "description": "A powerful laptop",
+    "stock": 50,
+    "price": 2000
+}
+
+###
+GET http://localhost:9001/products?limit=10&offset=0
+###
+GET http://localhost:9001/products/1
+###
+DELETE http://localhost:9001/products/1
+### 
