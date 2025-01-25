@@ -144,7 +144,7 @@ describe("Catalog Routes", () => {
       const product = ProductFactory.build();
       jest
         .spyOn(catalogService, "deleteProduct")
-        .mockImplementationOnce(() => Promise.resolve({ id: product.id }));
+        .mockImplementationOnce(() => Promise.resolve());
       const response = await request(app)
         .delete(`/products/${product.id}`)
         .set("Accept", "application/json");

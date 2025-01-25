@@ -146,14 +146,15 @@ describe("catalogService", () => {
     test("should delete product by id", async () => {
       const service = new CatalogService(repository);
       const product = ProductFactory.build();
+      
+      // Mocking delete method to return a resolved promise with no value
       jest
         .spyOn(repository, "delete")
-        .mockImplementationOnce(() => Promise.resolve({ id: product.id }));
-
+        .mockImplementationOnce(() => Promise.resolve()); // No return value
+  
       const result = await service.deleteProduct(product.id!);
-      expect(result).toMatchObject({
-        id: product.id,
-      });
+      expect(result).toBeUndefined(); // As there's no return value, we expect undefined
     });
   });
+  
 });

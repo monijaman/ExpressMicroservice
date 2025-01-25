@@ -1,0 +1,25 @@
+{
+    "recommendations": [
+      "esbenp.prettier-vscode",
+      "dbaeumer.vscode-eslint",
+      "CoenraadS.bracket-pair-colorizer-2",
+      "eamodio.gitlens",
+      "christian-kohler.path-intellisense",
+      "bradlc.vscode-tailwindcss",
+      "pranaygp.vscode-css-peek",
+      "dsznajder.es7-react-js-snippets",
+      "humao.rest-client",
+      "rangav.vscode-thunder-client",
+      "ms-azuretools.vscode-docker",
+      "rbbit.typescript-hero",
+      "christian-kohler.npm-intellisense",
+      "mtxr.sqltools",
+      "Prisma.prisma",
+      "Orta.vscode-jest",
+      "msjsdiag.debugger-for-chrome",
+      "shan.code-settings-sync",
+      "ritwickdey.LiveServer",
+      "shd101wyy.markdown-preview-enhanced"
+    ]
+  }
+  

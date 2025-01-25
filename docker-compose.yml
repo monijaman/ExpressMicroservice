@@ -1,0 +1,49 @@
+version: "3.9"
+services:
+  catalog_service:
+    build:
+      context: ./catalog_service
+    ports:
+      - "4001:9001"
+    environment:
+      DATABASE_URL: postgres://catalog_db:catalog_db_password@catalog_db_server:5432/catalog_service
+    command: npm run dev
+
+  order_service:
+    build:
+      context: ./order_service
+    ports:
+      - "4002:9002"
+    environment:
+      DATABASE_URL: postgres://order_db:order_db_password@order_db_server:5432/order_service
+    command: npm run dev
+ 
+  user_service:
+    build:
+      context: ./user_service
+    ports:
+      - "4003:9000"
+    environment:
+      DATABASE_URL: postgres://user_db:user_db_password@user_db_server:5432/user_service
+    command: npm run dev # Start your app
+    volumes:
+      - ./user_service:/app
+      - /app/node_modules
+    working_dir: /app
+
+    # Removed the 'depends_on' as there is no database dependency
+
+  # Assuming you no longer want to include database services for each service
+  # If needed, you can add your database services back like below
+  # catalog_db_server:
+  #   image: "postgres:17.2"
+  #   ports:
+  #     - "5432:5432"
+  #   environment:
+  #     POSTGRES_USER: catalog_db
+  #     POSTGRES_PASSWORD: catalog_db_password
+  #     POSTGRES_DB: catalog_service
+  #   volumes:
+  #     - ./db/catalog_db_server/:/var/lib/postgresql/data
+
+  # You can add the database services back or configure them separately if needed.

@@ -12,6 +12,7 @@ router.post(
   "/cart",
   RequestAuthorizer,
   async (req: Request, res: Response, next: NextFunction) => {
+    console.log("pppppppppppppppppppp")
     try {
       const user = req.user;
       if (!user) {
@@ -19,15 +20,15 @@ router.post(
         return;
       }
 
-      const error = ValidateRequest<CartRequestInput>(
-        req.body,
-        CartRequestSchema
-      );
+      // const error = ValidateRequest<CartRequestInput>(
+      //   req.body,
+      //   CartRequestSchema
+      // );
 
-      if (error) {
-        return res.status(404).json({ error });
-      }
-
+      // if (error) {
+      //   return res.status(404).json({ error });
+      // }
+console.log('cart container')
       const input: CartRequestInput = req.body;
 
       const response = await service.CreateCart(

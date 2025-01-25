@@ -21,11 +21,14 @@ export class CatalogRepository implements ICatalogRepository {
       data,
     });
   }
-  async delete(id: any) {
-    return this._prisma.product.delete({
+  async delete(id: number): Promise<void> {
+    // Perform the deletion but return no value
+    await this._prisma.product.delete({
       where: { id },
     });
+    // No return value, just resolves to undefined
   }
+  
   async find(limit: number, offset: number): Promise<Product[]> {
     return this._prisma.product.findMany({
       take: limit,

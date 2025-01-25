@@ -19,7 +19,7 @@ export const ExpressApp = async () => {
     return res.status(200).json({ message: "I am healthy!" });
   });
 
-  app.use(HandleErrorWithLogger);
+  app.use(HandleErrorWithLogger); 
 
   return app;
 };

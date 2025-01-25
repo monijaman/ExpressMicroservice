@@ -11,16 +11,18 @@ export const CreateCart = async (
   // get product details from catelog service
   const product = await GetProductDetails(input.productId);
   logger.info(product);
-  console.log(" holllaaaaaa");
   if (product.stock < input.qty) {
     throw new NotFoundError("product is out of stock");
-  }
+  }  
 
+  console.log(" --------------------");
   // find if the product is already in cart
   const lineItem = await repo.findCartByProductId(
     input.customerId,
     input.productId
-  );
+  ); 
+  
+  console.log(" holllaaaaaa", lineItem);
   if (lineItem) {
     return repo.updateCart(lineItem.id, lineItem.qty + input.qty);
   }

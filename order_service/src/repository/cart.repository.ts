@@ -40,12 +40,12 @@ const findCart = async (id: number): Promise<CartWithLineItems> => {
   const cart = await DB.query.carts.findFirst({
     where: (carts, { eq }) => eq(carts.customerId, id),
     with: {
-      lineItems: true,
+      lineItems: true, 
     },
   });
 
   if (!cart) {
-    throw new NotFoundError("Cart not found");
+    throw new NotFoundError("Cart not found ok!!");
   }
 
   return cart;
