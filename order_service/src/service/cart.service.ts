@@ -13,15 +13,15 @@ export const CreateCart = async (
   logger.info(product);
   if (product.stock < input.qty) {
     throw new NotFoundError("product is out of stock");
-  }  
+  }
 
-  console.log(" --------------------");
+  console.log(" --------cart service------------");
   // find if the product is already in cart
   const lineItem = await repo.findCartByProductId(
     input.customerId,
     input.productId
-  ); 
-  
+  );
+
   console.log(" holllaaaaaa", lineItem);
   if (lineItem) {
     return repo.updateCart(lineItem.id, lineItem.qty + input.qty);

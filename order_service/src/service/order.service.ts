@@ -10,6 +10,8 @@ export const CreateOrder = async (
 ) => {
   // find cart by customer id
   const cart = await cartRepo.findCart(userId);
+  console.log("=============");
+
   if (!cart) {
     throw new Error("Cart not found");
   }

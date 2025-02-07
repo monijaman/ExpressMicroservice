@@ -1,8 +1,8 @@
 import express, { NextFunction, Request, Response } from "express";
-import * as service from "../service/cart.service";
-import * as repository from "../repository/cart.repository";
-import { ValidateRequest } from "../utils/validator";
 import { CartRequestInput, CartRequestSchema } from "../dto/cartRequest.dto";
+import * as repository from "../repository/cart.repository";
+import * as service from "../service/cart.service";
+import { ValidateRequest } from "../utils/validator";
 import { RequestAuthorizer } from "./middleware";
 
 const router = express.Router();
@@ -12,7 +12,6 @@ router.post(
   "/cart",
   RequestAuthorizer,
   async (req: Request, res: Response, next: NextFunction) => {
-    console.log("pppppppppppppppppppp")
     try {
       const user = req.user;
       if (!user) {
@@ -20,17 +19,15 @@ router.post(
         return;
       }
 
-      // const error = ValidateRequest<CartRequestInput>(
-      //   req.body,
-      //   CartRequestSchema
-      // );
+      const error = ValidateRequest<CartRequestInput>(
+        req.body,
+        CartRequestSchema
+      );
 
-      // if (error) {
-      //   return res.status(404).json({ error });
-      // }
-console.log('cart container')
+      if (error) {
+        return res.status(404).json({ error });
+      }
       const input: CartRequestInput = req.body;
-
       const response = await service.CreateCart(
         {
           ...input,

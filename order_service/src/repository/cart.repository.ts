@@ -40,7 +40,7 @@ const findCart = async (id: number): Promise<CartWithLineItems> => {
   const cart = await DB.query.carts.findFirst({
     where: (carts, { eq }) => eq(carts.customerId, id),
     with: {
-      lineItems: true, 
+      lineItems: true,
     },
   });
 
@@ -95,11 +95,11 @@ const findCartByProductId = async (
     },
   });
 
-  if (!cart) {
-    throw new NotFoundError(`Cart for Customer ID ${customerId} not found`);
-  }
+  // if (!cart) {
+  //   throw new NotFoundError(`Cart for Customer ID ${customerId} not found`);
+  // }
 
-  const lineItem = cart.lineItems.find((item) => item.productId === productId);
+  const lineItem = cart?.lineItems.find((item) => item.productId === productId);
 
   return lineItem ?? null;
 };
