@@ -24,7 +24,7 @@ export const InitializeBroker = async () => {
 
     // Log when the producer successfully connects
     producer.on("producer.connect", async () => {
-      console.log("Producer connected successfully");
+      console.log("Orser Service Producer connected successfully");
     });
 
     // Connect to Kafka consumer
@@ -32,7 +32,7 @@ export const InitializeBroker = async () => {
 
     // Log when the consumer successfully connects
     consumer.on("consumer.connect", async () => {
-      console.log("Consumer connected successfully");
+      console.log("Orser Service Consumer connected successfully");
     });
 
     // Subscribe to the "OrderEvents" topic and process messages using HandleSubscription

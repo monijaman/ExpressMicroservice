@@ -1,8 +1,8 @@
 import axios from "axios";
-import { AuthorizeError, NotFoundError } from "../error";
-import { logger } from "../logger";
 import { Product } from "../../dto/product.dto";
 import { User } from "../../dto/User.Model";
+import { AuthorizeError, NotFoundError } from "../error";
+import { logger } from "../logger";
 
 const CATALOG_BASE_URL =
   process.env.CATALOG_BASE_URL || "http://localhost:9001"; // env variable
@@ -24,9 +24,13 @@ export const GetProductDetails = async (productId: number) => {
 
 export const GetStockDetails = async (ids: number[]) => {
   try {
+    console.log(`${CATALOG_BASE_URL}/products/stock`, ids);
     const response = await axios.post(`${CATALOG_BASE_URL}/products/stock`, {
       ids,
     });
+
+    console.log("============GetStockDetails==============", response);
+
     return response.data as Product[];
   } catch (error) {
     logger.error(error);

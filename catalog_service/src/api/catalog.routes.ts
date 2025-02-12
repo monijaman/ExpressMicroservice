@@ -1,13 +1,14 @@
 import express, { NextFunction, Request, Response } from "express";
-import { CatalogService } from "../services/catalog.service";
-import { CatalogRepository } from "../repository/catalog.repository";
-import { RequestValidator } from "../utils/requestValidator";
 import { CreateProductRequest, UpdateProductRequest } from "../dto/product.dto";
-
+import { CatalogRepository } from "../repository/catalog.repository";
+import { BrokerService } from "../services/broker.service";
+import { CatalogService } from "../services/catalog.service";
+import { RequestValidator } from "../utils/requestValidator";
 const router = express.Router();
 
 export const catalogService = new CatalogService(new CatalogRepository());
-
+const brokerService = new BrokerService(catalogService);
+brokerService.initializeBroker();
 // endpoints
 router.post(
   "/products",
@@ -53,6 +54,8 @@ router.patch(
 router.get(
   "/products",
   async (req: Request, res: Response, next: NextFunction) => {
+    console.log("req.params.id", req.params.id);
+
     const limit = Number(req.query["limit"]);
     const offset = Number(req.query["offset"]);
     try {
@@ -65,9 +68,20 @@ router.get(
   }
 );
 
+router.post("/products/stock", async (req: Request, res: Response) => {
+  try {
+    const data = await catalogService.getProductStock(req.body.ids);
+    return res.status(200).json(data);
+  } catch (error) {
+    const err = error as Error;
+    return res.status(500).json(err.message);
+  }
+});
+
 router.get(
   "/products/:id",
   async (req: Request, res: Response, next: NextFunction) => {
+    console.log("req.params.id", req.params.id);
     const id = parseInt(req.params.id) || 0;
     try {
       const data = await catalogService.getProduct(id);
@@ -91,15 +105,5 @@ router.delete(
     }
   }
 );
-
-router.post("/products/stock", async (req: Request, res: Response) => {
-  try {
-    const data = await catalogService.getProductStock(req.body.ids);
-    return res.status(200).json(data);
-  } catch (error) {
-    const err = error as Error;
-    return res.status(500).json(err.message);
-  }
-});
 
 export default router;

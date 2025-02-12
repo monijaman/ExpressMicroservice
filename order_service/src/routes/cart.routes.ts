@@ -52,6 +52,8 @@ router.get(
         next(new Error("User not found"));
         return;
       }
+      console.log("++++++++++++++++++++++++++++");
+
       const response = await service.GetCart(user.id, repo);
       return res.status(200).json(response);
     } catch (error) {
@@ -66,6 +68,7 @@ router.patch(
   async (req: Request, res: Response, next: NextFunction) => {
     try {
       const user = req.user;
+
       if (!user) {
         next(new Error("User not found"));
         return;

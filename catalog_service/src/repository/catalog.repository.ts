@@ -28,7 +28,7 @@ export class CatalogRepository implements ICatalogRepository {
     });
     // No return value, just resolves to undefined
   }
-  
+
   async find(limit: number, offset: number): Promise<Product[]> {
     return this._prisma.product.findMany({
       take: limit,
@@ -42,7 +42,7 @@ export class CatalogRepository implements ICatalogRepository {
     if (product) {
       return Promise.resolve(product);
     }
-    throw new NotFoundError("product not found");
+    throw new NotFoundError("Product not found");
   }
 
   findStock(ids: number[]): Promise<Product[]> {
