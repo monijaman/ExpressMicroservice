@@ -54,8 +54,6 @@ router.patch(
 router.get(
   "/products",
   async (req: Request, res: Response, next: NextFunction) => {
-    console.log("req.params.id", req.params.id);
-
     const limit = Number(req.query["limit"]);
     const offset = Number(req.query["offset"]);
     try {

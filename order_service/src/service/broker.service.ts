@@ -50,6 +50,7 @@ export const InitializeBroker = async () => {
  * @param data - The order details to be published.
  */
 export const SendCreateOrderMessage = async (data: any) => {
+  console.log("Sending Create Order message:", data);
   try {
     await MessageBroker.publish({
       event: OrderEvent.CREATE_ORDER, // Event type for creating an order

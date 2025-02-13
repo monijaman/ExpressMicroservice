@@ -24,12 +24,9 @@ export const GetProductDetails = async (productId: number) => {
 
 export const GetStockDetails = async (ids: number[]) => {
   try {
-    console.log(`${CATALOG_BASE_URL}/products/stock`, ids);
     const response = await axios.post(`${CATALOG_BASE_URL}/products/stock`, {
       ids,
     });
-
-    console.log("============GetStockDetails==============", response);
 
     return response.data as Product[];
   } catch (error) {

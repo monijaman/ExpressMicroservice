@@ -129,7 +129,7 @@ const subscribe = async (
 ): Promise<void> => {
   const consumer = await connectConsumer<Consumer>();
   await consumer.subscribe({ topic: topic, fromBeginning: true });
-
+  console.log("Subscribed to topic:", topic);
   await consumer.run({
     eachMessage: async ({ topic, partition, message }) => {
       if (["CatalogEvents", "otherEvents"].includes(topic)) {

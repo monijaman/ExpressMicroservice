@@ -35,5 +35,7 @@ export class BrokerService {
     );
   }
   // publish delete product
-  public async sendDeleteProudctMessage(data: unknown) {}
+  public async sendDeleteProudctMessage(data: unknown) {
+    console.log("Sending Delete Product message:", data);
+  }
 }

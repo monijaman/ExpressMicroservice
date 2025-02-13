@@ -52,7 +52,6 @@ router.get(
         next(new Error("User not found"));
         return;
       }
-      console.log("++++++++++++++++++++++++++++");
 
       const response = await service.GetCart(user.id, repo);
       return res.status(200).json(response);

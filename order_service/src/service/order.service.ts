@@ -11,7 +11,6 @@ export const CreateOrder = async (
 ) => {
   // find cart by customer id
   const cart = await cartRepo.findCart(userId);
-  console.log("=============");
 
   if (!cart) {
     throw new Error("Cart not found");
@@ -48,7 +47,6 @@ export const CreateOrder = async (
   // console.log("Order created", order);
   // fire a message to subscription service [catalog service] to update stock
   // await repo.publishOrderEvent(order, "ORDER_CREATED");
-
   await SendCreateOrderMessage(orderInput);
   // return success message
   return { message: "Order created successfully", orderNumber: orderNumber };

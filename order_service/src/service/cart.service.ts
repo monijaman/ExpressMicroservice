@@ -50,15 +50,9 @@ export const GetCart = async (id: number, repo: CartRepositoryType) => {
     throw new NotFoundError("cart items not found");
   }
 
-  console.log("============lineItemslineItems==============", lineItems);
-
   // verify with inventory service if the product is still available
   const stockDetails = await GetStockDetails(
     lineItems.map((item) => item.productId)
-  );
-  console.log(
-    "==============stockDetailsstockDetails============",
-    stockDetails
   );
 
   if (Array.isArray(stockDetails)) {
